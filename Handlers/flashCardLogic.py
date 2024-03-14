@@ -36,3 +36,6 @@ function_dict[command]()
 # vytvořit flash kartu s parametry: term a definition
 # uložit jí do skupiny karet: deck
 # vybírat pomocí inputu konkrétní kartu z decku -> zobrazí se jak její termín, tak i definice
+
+
+# python manage.py runserver -> zapne lokální server (web)
