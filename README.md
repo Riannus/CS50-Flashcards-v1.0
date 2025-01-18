@@ -43,7 +43,7 @@ Planned enhancements include:
 ### Installation  
 1. Clone the repository to your local machine:  
    ```bash
-   git clone https://github.com/your-username/flashcards.git
+   git clone https://github.com/your-username/CS50-Flashcards-v1.0.git
    cd flashcards
 2. Install the required Python libraries:
    ```bash
