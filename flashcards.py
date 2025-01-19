@@ -30,7 +30,7 @@ class CardDeck:
 
     def save_deck(self, filename):
         """Save the card deck to the CSV file."""
-        with open(filename, "w", newline='') as csv_deck:
+        with open(filename, "w", newline='', encoding="utf-8") as csv_deck:
             fields = ["Term", "Definition"]
             writer = csv.DictWriter(csv_deck, fieldnames=fields)
             writer.writeheader()
@@ -40,7 +40,7 @@ class CardDeck:
     def load_deck(self, filename):
         """Load the card deck from the CSV file."""
         self.card_deck = []
-        with open(filename, newline='') as csv_deck:
+        with open(filename, newline='', encoding="utf-8") as csv_deck:
             reader = csv.DictReader(csv_deck)
             for row in reader:
                 term, definition = row['Term'], row['Definition']
@@ -352,12 +352,18 @@ def scan_decks():
     """Scans the project folder for CSV files and returns the list of deck names (without ".csv")."""
     project_folder = os.path.dirname(os.path.abspath(__file__))
     deck_list = []
+    platform_name = platform.system()
 
     with os.scandir(project_folder) as entries:
         for entry in entries:
             if entry.is_file() and entry.name.endswith(".csv"):
                 file_path = entry.path
-                splitted_path = file_path.split("/")
+
+                if platform_name in ["Darwin", "Linux"]:
+                    splitted_path = file_path.split("/")
+                elif platform_name == "Windows":
+                    splitted_path = file_path.split("\\")
+
                 deck_name = splitted_path[-1].replace(".csv", "")
                 deck_list.append(deck_name)
 
