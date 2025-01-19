@@ -1,10 +1,12 @@
 import os
+import platform
 import sys
 import csv
 import random
+from rich.console import Console
 from tabulate import tabulate
 
-
+console = Console() #global object for printing colored text in terminal
 def main():
     create_default_deck()
     menu()
@@ -45,8 +47,8 @@ class CardDeck:
                 self.card_deck.append(FlashCard(term, definition))
 
         if len(self.card_deck) == 0:
-            print("The deck is empty. Returning to the main menu.")
-            print("---------------------------")
+            console.print("[bold magenta]The Deck is empty! To return to the main menu, press enter.[/bold magenta]")
+            input()
             menu()
 
     def edit_card(self, card_id, new_term, new_definition):
@@ -63,10 +65,9 @@ class CardDeck:
 
 # ENVIRONMENT FUNCTIONS
 def menu():
-    os.system("clear")
-    print(end="\n")
-    print("""FLASH CARDS""")
-    print("Let's get started by picking an option. Type the number next to your choice:", end="\n")
+    clear_terminal()
+    console.print("[bold bright_blue]FLASH CARDS[/bold bright_blue]")
+    print("Welcome! Please choose an option by typing the corresponding number.", end="\n")
 
     table = [["[1]", "Play"], ["[2]", "Create Deck"], ["[3]", "Browse Decks"], ["[4]", "Exit"]]
     print(tabulate(table, tablefmt="heavy_outline"))
@@ -81,16 +82,15 @@ def menu():
     elif user_choice == 3:
         env_deck_browser()
     elif user_choice == 4:
-        os.system("clear")
+        clear_terminal()
         print("Exiting...")
         sys.exit()
 
 
 def env_play():
-    os.system("clear")
-    print("\n")
-    print("PLAY")
-    print("Choose the deck by its number you would like to play with. To exit to the main menu type [0].")
+    clear_terminal()
+    console.print("[bold bright_blue]PLAY[/bold bright_blue]")
+    console.print("To select the deck you'd like to play with, choose its [magenta][ID][/magenta]. Or [magenta][0] Return[/magenta] to the main menu.")
     print(
         "To edit or remove certain deck, visit 'Browse Decks' in the main menu. To create new deck visit 'Create Deck' in the main menu.")
 
@@ -108,8 +108,9 @@ def env_play():
     if user_choice == 0:
         menu()
     else:
-        os.system("clear")
+        clear_terminal()
         print("Your goal is to match 15 cards correctly. You have only 3 chances, so be careful.")
+        console.print("If you want to exit the game at any time, type [magenta]\\[exit_game][/magenta].")
         deck_index = user_choice - 1
         filename = deck_list[deck_index] + ".csv"
         game_deck = open_deck_by_id(filename)  # Deck picked for the game
@@ -122,17 +123,17 @@ def env_play():
 
 
 def env_deck_creation():
-    os.system("clear")
-    print("\n")
-    print("CARD DECK CREATION")
-    table = [["[1]", "Create Your Deck"], ["[2]", "Exit to Main Menu"]]
+    clear_terminal()
+    console.print("[bold bright_blue]CARD DECK CREATION[/bold bright_blue]")
+    print("In the Deck Creator, you can create your own custom flashcard decks.")
+    table = [["[1]", "Create Your Deck"], ["[2]", "Return to the Main Menu"]]
     print(tabulate(table, tablefmt="heavy_outline"))
     print(end="\n")
 
     choice_range = [1, 2]
     user_choice = choice_validator(choice_range)
     if user_choice == 1:
-        os.system("clear")
+        clear_terminal()
         deck_name = input("Enter the name of your deck: ")
         create_deck(deck_name)
     elif user_choice == 2:
@@ -140,15 +141,15 @@ def env_deck_creation():
 
 
 def env_deck_browser():
-    os.system("clear")
-    print("\n")
-    print("YOUR DECKS")
-    print("To interact with certain deck, choose its number. To exit to the main menu type [0].")
+    clear_terminal()
+    console.print("[bold bright_blue]YOUR DECKS[/bold bright_blue]")
+    console.print("Here you can see a list of your saved decks. To interact with a specific deck, select its [magenta][ID][/magenta]. Or [magenta][0] Return[/magenta] to the main menu.")
 
     deck_list = scan_decks()
 
     if not deck_list:
-        print("No decks found. Returning to the main menu.")
+        console.print("[bold magenta]No Deck found. To return to the main menu, press enter.[/bold magenta]")
+        input()
         menu()  # Exit to the main menu if no decks are found
         return
 
@@ -161,12 +162,11 @@ def env_deck_browser():
     if user_choice == 0:
         menu()
     else:
-        os.system("clear")
+        clear_terminal()
         deck_index = user_choice - 1
         filename = deck_list[deck_index] + ".csv"
 
-        print("\n")
-        print(f"This is your deck \"{filename}\". [0] Exit, [delete] to delete, [edit] to edit")
+        console.print(f"This is your deck [bold bright_blue]\"{filename}\"[/bold bright_blue]. You can [magenta][0] Return[/magenta] to the Deck Browser, [magenta]\\[delete][/magenta] the deck, or [magenta]\\[edit][/magenta] the deck.")
         picked_deck = open_deck_by_id(filename)
         create_cards_table(picked_deck)
         id_range = len(picked_deck)
@@ -178,7 +178,8 @@ def env_deck_browser():
                 remove_deck(deck_list, deck_index)
                 print("\n")
                 print("Deck was successfuly removed.")
-                input("To return to the Deck Browser, press any key.")
+                console.print("[bold magenta]To return to the Deck Browser, press enter.[/bold magenta]")
+                input()
                 env_deck_browser()
                 break
             elif second_choice == "edit":
@@ -202,11 +203,12 @@ def game(game_deck):
         print("\n")
         random.shuffle(game_deck)  # Will pick random card from the deck.
         random_card = game_deck[0]
-        answer_before_validation = input(f"What matches \"{random_card['Term']}\"? ")
+        console.print(f"What matches [bold magenta]{random_card['Term']}[/bold magenta]? ")
+        answer_before_validation = input("Your Answer: ")
         answer = str_validation(answer_before_validation)  # Ensure that the answer is in lowercase.
 
         if answer == random_card["Definition"]:
-            os.system("clear")
+            clear_terminal()
             score += 1
             print(tabulate([["Correct!"], [f"{score} out of {max_score} flashcards are correct."]],
                            tablefmt="heavy_outline"))
@@ -214,24 +216,28 @@ def game(game_deck):
 
             random.shuffle(game_deck)
             if score == max_score:
+                clear_terminal()
                 print(tabulate([["Congratulations!"], ["You did it—you won!"]], tablefmt="heavy_outline"))
-                print("Returning to the main menu.")
-                print("---------------------------")
+                console.print("[bold magenta]To return to the main menu, press enter.[/bold magenta]")
+                input()
+                clear_terminal()
                 menu()
 
+        elif answer == "exit_game":
+            menu()
+
         else:
-            os.system("clear")
+            clear_terminal()
             life -= 1
-            print(tabulate([["Incorrect. Try again!"], [f"Remaining chances: {life}"],
-                            [f"{score} out of {max_score} flashcards are correct."]], tablefmt="heavy_outline"))
-            print(end="\n")
+            print(tabulate([["Incorrect. Try again!"], [f"Remaining chances: {life}"], [f"{score} out of {max_score} flashcards are correct."]], tablefmt="heavy_outline"))
 
             if life == 0:
-                os.system("clear")
+                clear_terminal()
                 table = [["GAME OVER"], ["Give it another shot!"]]
                 print(tabulate(table, tablefmt="heavy_outline"))
-                input("To return to the main menu, press any key.")
-                os.system("clear")
+                console.print("[bold magenta]To return to the main menu, press enter.[/bold magenta]")
+                input()
+                clear_terminal()
                 menu()
 
 
@@ -279,8 +285,8 @@ def create_default_deck():
 
 def create_deck(deck_name):
     """Process of defining the term and definition for each flashcard and saving them to the deck."""
-    print(
-        "Enter a term and its definition to create your flashcards. Press [Enter] on an empty term to finish your deck.")
+    console.print(
+        "Enter a term and its definition to create your flashcards. Press [magenta][Enter][/magenta] on an empty term to finish your deck.")
     print("")
     card_deck = CardDeck()
 
@@ -295,17 +301,18 @@ def create_deck(deck_name):
                     continue
 
                 print("\n")
-                print("Would you like to save your deck [1] or return to the main menu [2]?")
-                choice_range = [1, 2]
+                console.print("Would you like to [magenta][0] return[/magenta] to the main menu or [magenta][1] save[/magenta] your deck?")
+                choice_range = [0, 1]
                 user_choice = choice_validator(choice_range)
                 if user_choice == 1:
                     filename = deck_name + ".csv"
                     card_deck.save_deck(filename)
                     print("\n")
                     print(f"Deck \"{deck_name}\" was succesfully saved.")
-                    input("To return to the main menu press any key.")
+                    console.print("[bold magenta]To return to the main menu, press enter.[/bold magenta]")
+                    input()
                     menu()
-                elif user_choice == 2:
+                elif user_choice == 0:
                     menu()
 
             definition = input("Definition: ").strip().casefold()
@@ -336,7 +343,8 @@ def edit_deck(card_id, filename):
     card_deck.save_deck(filename)
     print("\n")
     print("The card has been successfully updated.")
-    input("To go back to the Deck Browser pres any key.")
+    console.print("[bold magenta]To return to the Deck Browser, press enter.[/bold magenta]")
+    input()
     env_deck_browser()
 
 
@@ -393,6 +401,15 @@ def create_cards_table(deck_list):
     table_data = [[i, card["Term"], card["Definition"]] for i, card in enumerate(deck_list, 1)]
     print(tabulate(table_data, headers=["ID", "Term", "Definition"], tablefmt="heavy_outline"))
     print(end="\n")
+
+def clear_terminal():
+    """Clear the terminal window based on the used platform"""
+    platform_name = platform.system()
+    if platform_name in ["Darwin","Linux"]:
+        os.system("clear")
+    elif platform_name == "Windows":
+        os.system("cls")
+
 
 
 if __name__ == "__main__":
