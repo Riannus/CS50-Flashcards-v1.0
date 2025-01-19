@@ -15,3 +15,6 @@
 ### Fixed
 - Bug fix: Corrected terminal clearing issue for Windows users.
 - Renamed the `requirements.tst` file to `requirements.txt` to fix dependency installation issues.
+- Updated `scan_decks` to use cross-platform path handling with `pathlib`.
+- Ensured UTF-8 encoding for all file operations to fix diacritics issues.
+
