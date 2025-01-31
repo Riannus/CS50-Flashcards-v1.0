@@ -1,6 +1,6 @@
 # Changelog
 
-### [1.2.0] - 2025-01-31  
+### [1.2.0] - 2025-01-23  
 #### Added  
 - **New Mode: Study Mode**   
   - Flashcards can be viewed at a relaxed pace with no penalties.  
