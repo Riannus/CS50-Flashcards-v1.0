@@ -1,5 +1,20 @@
 # Changelog
 
+### [1.2.0] - 2025-01-31  
+#### Added  
+- **New Mode: Study Mode**   
+  - Flashcards can be viewed at a relaxed pace with no penalties.  
+  - Users can edit specific flashcards within Study Mode.  
+
+#### Changed  
+- Improved deck browsing experience with clearer instructions.  
+- Minor UI adjustments for better readability.  
+
+#### Fixed  
+- Fixed minor text alignment issues in terminal outputs.  
+- Ensured consistent file encoding when handling decks.
+
+  
 ## [1.1.0] - 2025-01-19
 ### Added
 - New feature: Ability to exit the game using the `exit_game` command.
