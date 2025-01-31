@@ -9,7 +9,8 @@
 ## Features  
 - **Custom Decks**: Create flashcard decks by defining terms and corresponding definitions.  
 - **Deck Browser**: View, edit, or delete existing flashcard decks.  
-- **Game Mode**: Play a "guessing game" with random flashcards from a selected deck. Players have 3 lives to correctly match all terms and definitions.  
+- **Game Mode**: Play a "guessing game" with random flashcards from a selected deck. Players have 3 lives to correctly match all terms and definitions.
+- **Study Mode**: A relaxed mode where users can go through their flashcards without penalties. Cards can also be edited directly in this mode.
 - **CSV-Based Storage**: Flashcard decks are stored in easily accessible CSV files for management and sharing.  
 - **Default Deck**: Includes a preloaded math deck for immediate gameplay.  
 
