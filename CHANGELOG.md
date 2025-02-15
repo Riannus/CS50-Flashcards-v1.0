@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.2.1] - 2025-02-15  
+### Added  
+- **New Mode: Time Attack**  
+  - Work in progress, not yet available for users.
+
+### Changed  
+- **Refactor: Code restructuring**  
+  - The original code has been separated into multiple modules for better readability and maintainability.  
+  - New structure includes separate folders for:  
+    - `card_decks/`: Game decks saved as CSV files.  
+    - `environments/`: Files for the menu, gameplay, deck browser, etc.  
+    - `game_modes/`: Different game modes, including Study Mode and Time Attack.  
+    - `models/`: Classes defining flashcards and decks.  
+    - `utils/`: Helper functions for deck management, validation, etc.
+
+
 ## [1.2.0] - 2025-01-23  
 ### Added  
 - **New Mode: Study Mode**   
