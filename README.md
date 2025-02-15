@@ -34,10 +34,14 @@ Planned enhancements include:
 5. **New Game Modes**: Implement a memory game (e.g., matching pairs).  
 
 ## Project Structure  
-- `flashcards.py`: Core application logic, including menu navigation, deck management, and gameplay.  
-- `README.md`: Documentation for the project.  
-- `requirements.txt`: List of dependencies (if any).  
-- `test_flashcards.py`: Unit tests for key functionality.  
+- `card_decks/`: Folder containing game decks saved as CSV files.
+- `environments/`: Contains environment files for menu, gameplay, deck browser, etc.
+- `game_modes/`: Contains different game modes like Study Mode, Time Attack, etc.
+- `models/`: Contains classes that define flashcards, decks, etc.
+- `utils/`: Helper functions for various operations like deck management, validation, etc.
+- `README.md`: Documentation for the project.
+- `requirements.txt`: List of dependencies (if any).
+- `test_flashcards.py`: Unit tests for key functionality. 
 
 ## How to Use  
 
