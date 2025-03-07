@@ -7,6 +7,7 @@ import environments
 
 console = Console()
 rich_table = Table()
+translations = helpers.load_translations()
 
 
 def study_mode(game_deck, filename):
@@ -23,8 +24,7 @@ def study_mode(game_deck, filename):
             card_content = random_card["Definition"]
             title = "Definition"
 
-        console.print(
-            "Use [bold magenta][Enter] to flip cards[/bold magenta] and memorize terms. Type [bold magenta][1] to switch cards[/bold magenta], [bold magenta][2] to edit card[/bold magenta] or type [bold magenta][0] to exit[/bold magenta].")
+        console.print(translations["game_study_mode"]["instructions"])
         nested_table = Table(title=f"{title}", title_style="italic dim", show_header=False, box=None,
                              title_justify="center", expand=True)
         nested_table.add_column(justify="center", vertical="middle")
@@ -34,7 +34,7 @@ def study_mode(game_deck, filename):
         console.print(outer_table)
 
         print("\n")
-        user_choice = input("Your Choice: ")
+        user_choice = input(translations["log_messages"]["your_choice"])
 
         if user_choice == "0":
             environments.menu()
@@ -44,11 +44,11 @@ def study_mode(game_deck, filename):
             card_side = True
         elif user_choice == "2":
             deck_manager.edit_deck(0, filename)
-            console.print("[bold magenta]The change will only be visible after reloading the study mode."
-                          "Press enter to continue.[/bold magenta]")
+            console.print(translations["log_messages"]["change_in_card"])
+            print(translations["log_messages"]["continue"])
             input()
 
         elif user_choice == "":
             card_side = not card_side
         else:
-            print("Invalid command. Please try again.")
+            print(translations["log_messages"]["invalid_command"])

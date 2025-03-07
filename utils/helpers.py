@@ -1,4 +1,5 @@
 import os
+import json
 import platform
 
 from rich.table import Table
@@ -44,3 +45,9 @@ def updated_status_table(life, score, max_score, time_left):
     table.add_row(str(life), f"{score}/{max_score}", f"{time_left}s")
 
     return table
+
+
+def load_translations():
+    translations_path = os.path.join(os.path.dirname(__file__), 'translations.json')
+    with open(translations_path, encoding="utf-8") as translation_file:
+        return json.load(translation_file)

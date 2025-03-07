@@ -1,0 +1,61 @@
+{
+    "titles": {
+        "flash_cards": "[bold bright_blue]FLASH CARDS[/bold bright_blue]",
+        "study_mode": "[bold bright_blue]STUDY MODE[/bold bright_blue]",
+        "deck_browser": "[bold bright_blue]YOUR DECKS[/bold bright_blue]",
+        "deck_creator": "[bold bright_blue]CARD DECK CREATION[/bold bright_blue]",
+        "play": "[bold bright_blue]PLAY[/bold bright_blue]"
+    },
+    "env_menu": {
+        "welcome_message": "Welcome! Please choose an option by typing the corresponding number."
+    },
+    "env_deck_browser": {
+        "welcome_message": "Here you can see a list of your saved decks. To interact with a specific deck, select its [magenta][ID][/magenta]. Or [magenta][0] Return[/magenta] to the main menu.",
+        "no_deck_found": "[bold magenta]No Deck found. To return to the main menu, press enter.[/bold magenta]",
+        "selected_deck": "You can [magenta][0] Return[/magenta] to the Deck Browser, [magenta]\\[delete][/magenta] the deck, or [magenta]\\[edit][/magenta] the deck."
+    },
+    "env_deck_creator": {
+        "welcome_message": "In the Deck Creator, you can create your own custom flashcard decks.",
+        "saving_deck_instructions":  "Would you like to [magenta][0] return[/magenta] to the main menu or [magenta][1] save[/magenta] your deck?",
+        "create_card_instructions": "Enter a term and its definition to create your flashcards. Press [magenta][Enter][/magenta] on an empty term to finish your deck."
+    },
+    "env_play": {
+        "welcome_message": "Choose the game mode. Or [bold magenta][0] Return[/bold magenta] to the main menu.",
+        "choose_deck_for_game": "To select the deck you'd like to play with, choose its [magenta][ID][/magenta]. Or [magenta][0] Return[/magenta] to the main menu."
+    },
+    "env_study_mode": {
+        "welcome_message": "Study Mode is a relaxed way to learn without time limits or penalties.",
+        "study_mode_instructions": "To interact with a specific deck, select its [bold magenta][ID][/bold magenta]. Or [bold magenta][0] Return[/bold magenta] to the main menu."
+    },
+    "game_quiz": {
+        "welcome_message": "Your goal is to match 15 cards correctly. You have only 3 chances, so be careful.",
+        "quiz_instructions": "If you want to exit the game at any time, type [magenta]\\[exit_game][/magenta]."
+    },
+    "game_study_mode": {
+        "instructions": "Use [bold magenta][Enter] to flip cards[/bold magenta] and memorize terms. Type [bold magenta][1] to switch cards[/bold magenta], [bold magenta][2] to edit card[/bold magenta] or type [bold magenta][0] to exit[/bold magenta]."
+    },
+    "log_messages": {
+        "your_choice": "Your Choice: ",
+        "your_answer": "Your Answer: ",
+        "continue": "Press [Enter] to continue.",
+        "successfully_deleted_deck": "Deck was successfuly removed.",
+        "return_to_the_deck_browser": "[bold magenta]To return to the Deck Browser, press enter.[/bold magenta]",
+        "return_to_the_main_menu": "[bold magenta]To return to the main menu, press enter.[/bold magenta]",
+        "invalid_command": "Invalid command. Please try again.",
+        "choose_id": "Choose an card ID: ",
+        "enter_deck_name": "Enter the name of your deck: ",
+        "game_mode_not_available": "[magenta]This game mode is not available in this version.[/magenta]",
+        "change_in_card": "[bold magenta]The change will only be visible after reloading the study mode.",
+        "cannot_save_empty_deck": "You cannot save an empty deck. Please add at least one card.",
+        "missing_definition": "Please provide a definition for your term. You can only save or exit during the 'term' input stage.",
+        "value_error": "Value Error: Please enter a valid term, such as 'black.'",
+        "card_updated": "The card has been successfully updated.",
+        "empty_deck": "The Deck is empty."
+    },
+    "global": {
+        "input_term": "Term: ",
+        "input_definition": "Definition: ",
+        "input_new_term": "Enter the new term: ",
+        "input_new_definition": "Enter the new definition: "
+    }
+}

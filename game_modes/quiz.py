@@ -6,6 +6,7 @@ import environments
 from utils import helpers
 
 console = Console()
+translations = helpers.load_translations()
 
 
 def quiz(game_deck):
@@ -14,10 +15,10 @@ def quiz(game_deck):
     max_score = 15
 
     helpers.clear_terminal()
-    print("Your goal is to match 15 cards correctly. You have only 3 chances, so be careful.")
-    console.print("If you want to exit the game at any time, type [magenta]\\[exit_game][/magenta].")
+    print(translations["game_quiz"]["welcome_message"])
+    console.print(translations["game_quiz"]["quiz_instructions"])
     print("\n")
-    input("To continue press [Enter]")
+    input(translations["log_messages"]["continue"])
     helpers.clear_terminal()
 
     while life > 0:
@@ -25,7 +26,7 @@ def quiz(game_deck):
         random.shuffle(game_deck)  # Will pick random card from the deck.
         random_card = game_deck[0]
         console.print(f"What matches [bold magenta]{random_card['Term']}[/bold magenta]? ")
-        answer_before_validation = input("Your Answer: ")
+        answer_before_validation = input(translations["log_messages"]["your_answer"])
         answer = helpers.str_validation(answer_before_validation)  # Ensure that the answer is in lowercase.
 
         if answer == random_card["Definition"]:
@@ -39,7 +40,7 @@ def quiz(game_deck):
             if score == max_score:
                 helpers.clear_terminal()
                 print(tabulate([["Congratulations!"], ["You did it—you won!"]], tablefmt="heavy_outline"))
-                console.print("[bold magenta]To return to the main menu, press enter.[/bold magenta]")
+                console.print(translations["log_messages"]["return_to_the_main_menu"])
                 input()
                 helpers.clear_terminal()
                 environments.menu()
@@ -57,7 +58,7 @@ def quiz(game_deck):
                 helpers.clear_terminal()
                 table = [["GAME OVER"], ["Give it another shot!"]]
                 print(tabulate(table, tablefmt="heavy_outline"))
-                console.print("[bold magenta]To return to the main menu, press enter.[/bold magenta]")
+                console.print(translations["log_messages"]["return_to_the_main_menu"])
                 input()
                 helpers.clear_terminal()
                 environments.menu()

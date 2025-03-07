@@ -7,12 +7,13 @@ import environments
 from utils import helpers
 
 console = Console()
+translations = helpers.load_translations()
 
 
 def menu():
     helpers.clear_terminal()
-    console.print("[bold bright_blue]FLASH CARDS[/bold bright_blue]")
-    print("Welcome! Please choose an option by typing the corresponding number.", end="\n")
+    console.print(translations["titles"]["flash_cards"])
+    print(translations["env_menu"]["welcome_message"], end="\n")
 
     table = [["[1]", "Play"], ["[2]", "Study Mode"], ["[3]", "Create Deck"], ["[4]", "Browse Decks"], ["[5]", "Exit"]]
     print(tabulate(table, tablefmt="heavy_outline"))
