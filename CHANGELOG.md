@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0] - 2025-03-07  
+### Added  
+- **Dynamic Text System**  
+  - Introduced a JSON-based system for managing in-game text.  
+  - All UI messages, prompts, and menu texts are now stored in `translations.json`.  
+  - This allows for easier modifications and ensures consistency across the application.  
+
+### Changed  
+- **Refactor: Code restructuring**  
+  - Updated all static text occurrences in the code to use the new dynamic text system.  
+  - Improved maintainability by centralizing all UI-related text in a single file.  
+
+
 ## [1.2.1] - 2025-02-15  
 ### Added  
 - **New Mode: Time Attack**  
