@@ -12,7 +12,8 @@
 - **Game Mode**: Play a "guessing game" with random flashcards from a selected deck. Players have 3 lives to correctly match all terms and definitions.
 - **Study Mode**: A relaxed mode where users can go through their flashcards without penalties. Cards can also be edited directly in this mode.
 - **CSV-Based Storage**: Flashcard decks are stored in easily accessible CSV files for management and sharing.  
-- **Default Deck**: Includes a preloaded math deck for immediate gameplay.  
+- **Default Deck**: Includes a preloaded math deck for immediate gameplay.
+- **Dynamic Text System**: All in-game texts are stored in a JSON file, making it easy to modify or expand without altering the source code.
 
 ## Design Decisions  
 - **CSV for Data Storage**: Chosen for its simplicity and ease of use, given the small scale of the project.  
@@ -41,7 +42,8 @@ Planned enhancements include:
 - `utils/`: Helper functions for various operations like deck management, validation, etc.
 - `README.md`: Documentation for the project.
 - `requirements.txt`: List of dependencies (if any).
-- `test_flashcards.py`: Unit tests for key functionality. 
+- `test_flashcards.py`: Unit tests for key functionality.
+- `translations.json`: translation keys.
 
 ## How to Use  
 

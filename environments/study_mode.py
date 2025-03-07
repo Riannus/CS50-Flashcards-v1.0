@@ -5,14 +5,14 @@ import game_modes
 from utils import helpers, deck_manager
 
 console = Console()
+translations = helpers.load_translations()
 
 
 def env_study_mode():
     helpers.clear_terminal()
-    console.print("[bold bright_blue]Study Mode[/bold bright_blue]")
-    print("Study Mode is a relaxed way to learn without time limits or penalties.")
-    console.print(
-        "To interact with a specific deck, select its [bold magenta][ID][/bold magenta]. Or [bold magenta][0] Return[/bold magenta] to the main menu.")
+    console.print(translations["titles"]["study_mode"])
+    print(translations["env_study_mode"]["welcome_message"])
+    console.print(translations["env_study_mode"]["study_mode_instructions"])
 
     deck_list = deck_manager.scan_decks()
 

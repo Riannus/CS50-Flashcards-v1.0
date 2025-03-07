@@ -8,9 +8,10 @@ import config
 import models
 import environments
 from config import PROJECT_DIR, DECKS_DIR
-from .helpers import choice_validator, clear_terminal
+from .helpers import choice_validator, clear_terminal, load_translations
 
 console = Console()
+translations = load_translations()
 
 
 def create_default_deck():
@@ -36,24 +37,22 @@ def create_default_deck():
 
 def create_deck(deck_name):
     """Process of defining the term and definition for each flashcard and saving them to the deck."""
-    console.print(
-        "Enter a term and its definition to create your flashcards. Press [magenta][Enter][/magenta] on an empty term to finish your deck.")
+    console.print(translations["env_deck_creator"]["create_card_instructions"])
     print("")
     card_deck = models.CardDeck()
 
     while True:
         try:
-            term = input("Term: ").strip().casefold()
+            term = input(translations["global"]["input_term"]).strip().casefold()
 
             if term == "":
 
                 if len(card_deck.card_deck) == 0:
-                    print("You cannot save an empty deck. Please add at least one card.")
+                    print(translations["log_messages"]["cannot_save_empty_deck"])
                     continue
 
                 print("\n")
-                console.print(
-                    "Would you like to [magenta][0] return[/magenta] to the main menu or [magenta][1] save[/magenta] your deck?")
+                console.print(translations["env_deck_creator"]["saving_deck_instructions"])
                 choice_range = [0, 1]
                 user_choice = choice_validator(choice_range)
                 if user_choice == 1:
@@ -61,23 +60,22 @@ def create_deck(deck_name):
                     card_deck.save_deck(filename)
                     print("\n")
                     print(f"Deck \"{deck_name}\" was succesfully saved.")
-                    console.print("[bold magenta]To return to the main menu, press enter.[/bold magenta]")
+                    console.print(translations["log_messages"]["return_to_the_main_menu"])
                     input()
                     environments.menu()
                 elif user_choice == 0:
                     environments.menu()
 
-            definition = input("Definition: ").strip().casefold()
+            definition = input(translations["global"]["input_definition"]).strip().casefold()
             while not definition:
-                print(
-                    "Please provide a definition for your term. You can only save or exit during the 'term' input stage.")
-                definition = input("Definition: ").strip().casefold()
+                print(translations["log_messages"]["missing_definition"])
+                definition = input(translations["global"]["input_definition"]).strip().casefold()
 
             card_deck.add_card(term, definition)
 
 
         except ValueError:
-            print("Value Error: Please enter a valid term, such as 'black.'")
+            print(translations["log_messages"]["value_error"])
 
 
 def edit_deck(card_id, filename):
@@ -88,13 +86,13 @@ def edit_deck(card_id, filename):
     if card_id < 0 or card_id >= len(card_deck.card_deck):
         environments.menu()
 
-    new_term = input("Enter the new term: ").strip().casefold()
-    new_definition = input("Enter the new definition: ").strip().casefold()
+    new_term = input(translations["global"]["input_new_term"]).strip().casefold()
+    new_definition = input(translations["global"]["input_new_definition"]).strip().casefold()
 
     card_deck.edit_card(card_id, new_term, new_definition)
     card_deck.save_deck(filename)
     print("\n")
-    print("The card has been successfully updated.")
+    print(translations["log_messages"]["card_updated"])
 
 
 def scan_decks():
@@ -141,8 +139,7 @@ def remove_deck(deck_list, deck_id):
 def prepare_deck_for_game(game_mode):
     clear_terminal()
     console.print(f"[bold bright_blue]{game_mode}[/bold bright_blue]")
-    console.print(
-        "To select the deck you'd like to play with, choose its [magenta][ID][/magenta]. Or [magenta][0] Return[/magenta] to the main menu.")
+    console.print(translations["env_play"]["choose_deck_for_game"])
 
     deck_list = scan_decks()
 
@@ -183,7 +180,7 @@ def create_decks_table(deck_list):
 def create_cards_table(deck_list):
     """Creates and prints a table of the flashcards in the deck along with their IDs."""
     if not deck_list:
-        print("The Deck is empty.")
+        print(translations["log_messages"]["empty_deck"])
         return
 
     table_data = [[i, card["Term"], card["Definition"]] for i, card in enumerate(deck_list, 1)]

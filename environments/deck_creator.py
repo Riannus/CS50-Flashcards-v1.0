@@ -5,12 +5,13 @@ import environments
 from utils import helpers, deck_manager
 
 console = Console()
+translations = helpers.load_translations()
 
 
 def env_deck_creation():
     helpers.clear_terminal()
-    console.print("[bold bright_blue]CARD DECK CREATION[/bold bright_blue]")
-    print("In the Deck Creator, you can create your own custom flashcard decks.")
+    console.print(translations["titles"]["deck_creator"])
+    print(translations["env_deck_creator"]["welcome_message"])
     table = [["[1]", "Create Your Deck"], ["[2]", "Return to the Main Menu"]]
     print(tabulate(table, tablefmt="heavy_outline"))
     print(end="\n")
@@ -19,7 +20,7 @@ def env_deck_creation():
     user_choice = helpers.choice_validator(choice_range)
     if user_choice == 1:
         helpers.clear_terminal()
-        deck_name = input("Enter the name of your deck: ")
+        deck_name = input(translations["log_messages"]["enter_deck_name"])
         deck_manager.create_deck(deck_name)
     elif user_choice == 2:
         environments.menu()

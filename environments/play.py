@@ -6,12 +6,12 @@ import environments
 import game_modes
 
 console = Console()
-
+translations = helpers.load_translations()
 
 def env_play():
     helpers.clear_terminal()
-    console.print("[bold bright_blue]PLAY[/bold bright_blue]")
-    console.print("Choose the game mode. Or [bold magenta][0] Return[/bold magenta] to the main menu.", end="\n")
+    console.print(translations["titles"]["play"])
+    console.print(translations["env_play"]["welcome_message"], end="\n")
 
     table = [["[1]", "Quiz", "*Guess the right definition*"], ["[2]", "Time Attack", "*Currently Unavailable*"]]
     print(tabulate(table, tablefmt="heavy_outline"))
@@ -26,8 +26,8 @@ def env_play():
         game_deck = deck_manager.prepare_deck_for_game(game_mode)
         game_modes.quiz(game_deck)
     elif user_choice == 2:
-        console.print("[magenta]This game mode is not available in this version.[/magenta]")
-        input("Press [Enter] to continue.")
+        console.print(translations["log_messages"]["game_mode_not_available"])
+        input(translations["log_messages"]["continue"])
         environments.env_play()
     #     game_mode = "TIME ATTACK"
     #     game_deck = deck_manager.prepare_deck_for_game(game_mode)
