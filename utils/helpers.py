@@ -1,10 +1,15 @@
 import os
 import json
 import platform
+import random
 
 from rich.table import Table
+from rich.console import Console
+
+import environments
 
 rich_table = Table()
+console = Console()
 
 
 def choice_validator(choice_range) -> int:
@@ -51,3 +56,18 @@ def load_translations():
     translations_path = os.path.join(os.path.dirname(__file__), 'translations.json')
     with open(translations_path, encoding="utf-8") as translation_file:
         return json.load(translation_file)
+
+def shuffle_definitions(game_deck, random_card):
+    """Shuffle the definitions and display them."""
+
+    number_of_cards = len(game_deck)
+
+    if number_of_cards < 10:
+        console.print("[bold magenta]Not enough cards to play the game.[/bold magenta]")
+        input("Press Enter to return to the main menu.")
+        environments.menu()
+
+    list_of_definitions = [random_card["Definition"], game_deck[1]["Definition"], game_deck[2]["Definition"], game_deck[3]["Definition"]]
+    random.shuffle(list_of_definitions)
+
+    return list_of_definitions

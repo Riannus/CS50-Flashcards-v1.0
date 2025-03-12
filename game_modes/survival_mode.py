@@ -10,14 +10,13 @@ console = Console()
 translations = helpers.load_translations()
 
 
-def quiz(game_deck):
+def survival_mode(game_deck):
     life = 3
     score = 0
-    max_score = 15
 
     helpers.clear_terminal()
-    print(translations["game_quiz"]["welcome_message"])
-    console.print(translations["game_quiz"]["quiz_instructions"])
+    print(translations["game_survival"]["welcome_message"])
+    console.print(translations["game_survival"]["survival_instructions"])
     print("\n")
     input(translations["log_messages"]["continue"])
     helpers.clear_terminal()
@@ -33,18 +32,11 @@ def quiz(game_deck):
         if answer == random_card["Definition"]:
             helpers.clear_terminal()
             score += 1
-            print(tabulate([["Correct!"], [f"{score} out of {max_score} flashcards are correct."]],
-                           tablefmt="heavy_outline"))
-            print(end="\n")
+
+            table = [[f"Your score: {score}"], [f"Remaining chances: {life}"]]
+            print(tabulate(table, tablefmt="heavy_outline"))
 
             random.shuffle(game_deck)
-            if score == max_score:
-                helpers.clear_terminal()
-                print(tabulate([["Congratulations!"], ["You did it—you won!"]], tablefmt="heavy_outline"))
-                console.print(translations["log_messages"]["return_to_the_main_menu"])
-                input()
-                helpers.clear_terminal()
-                environments.menu()
 
         elif answer == "exit_game":
             environments.menu()
@@ -52,8 +44,9 @@ def quiz(game_deck):
         else:
             helpers.clear_terminal()
             life -= 1
-            print(tabulate([["Incorrect. Try again!"], [f"Remaining chances: {life}"],
-                            [f"{score} out of {max_score} flashcards are correct."]], tablefmt="heavy_outline"))
+
+            table = [[f"Your score: {score}"], [f"Remaining chances: {life}"]]
+            print(tabulate(table, tablefmt="heavy_outline"))
             console.print(f"[bold red]The right answer was '{random_card['Definition']}'.[/bold red]")
 
             if life == 0:
