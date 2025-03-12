@@ -9,7 +9,8 @@
 - **Correct Answer Display**: Now shows the correct answer when a wrong guess is made.
 
 ### Changed  
-- Validation Improvement: Prevents entering an empty string for the deck ID. 
+- Validation Improvement: Prevents entering an empty string for the deck ID.
+- PyTest Updated
 
 
 ## [1.3.0] - 2025-03-07  

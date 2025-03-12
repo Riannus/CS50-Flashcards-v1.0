@@ -50,7 +50,9 @@ Planned enhancements include:
 
 ## How to Use  
 
-### Installation  
+### Installation
+Ensure that Python is installed on the system. The program is developed in Python, so having Python installed is essential.
+
 1. Clone the repository to your local machine:  
    ```bash
    git clone https://github.com/your-username/CS50-Flashcards-v1.0.git
