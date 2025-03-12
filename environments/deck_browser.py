@@ -50,12 +50,15 @@ def env_deck_browser():
                 input()
                 env_deck_browser()
                 break
-            elif second_choice == "edit": #TODO: Při zadání prázdného stringu (enter) při výběru ID, program spadne. Bude třeba přidat validaci.
-                card_id = int(input(translations["log_messages"]["choose_id"]))
-                deck_manager.edit_deck(card_id - 1, filename)
-                console.print(translations["log_messages"]["return_to_the_deck_browser"])
-                input()
-                env_deck_browser()
+            elif second_choice == "edit":
+                try:
+                    card_id = int(input(translations["log_messages"]["choose_id"]))
+                    deck_manager.edit_deck(card_id - 1, filename)
+                    console.print(translations["log_messages"]["return_to_the_deck_browser"])
+                    input()
+                    env_deck_browser()
+                except ValueError:
+                    print(translations["log_messages"]["invalid_command"])
                 break
             elif second_choice == "0":
                 env_deck_browser()

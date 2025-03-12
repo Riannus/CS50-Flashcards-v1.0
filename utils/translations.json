@@ -34,11 +34,19 @@
     "game_study_mode": {
         "instructions": "Use [bold magenta][Enter] to flip cards[/bold magenta] and memorize terms. Type [bold magenta][1] to switch cards[/bold magenta], [bold magenta][2] to edit card[/bold magenta] or type [bold magenta][0] to exit[/bold magenta]."
     },
+    "game_guess_definition": {
+        "welcome_message": "Your goal is to choose the right answer from the displayed options. You have only 3 chances, so be careful.",
+        "quiz_instructions": "Enter only the letter of your chosen answer (a,b,c,d) - without ')'. If you want to exit the game at any time, type [magenta]\\[exit_game][/magenta]."
+    },
+    "game_survival": {
+        "welcome_message": "This is the endless mode. You have only 3 chances, so be careful.",
+        "survival_instructions": "If you want to exit the game at any time, type [magenta]\\[exit_game][/magenta]."
+    },
     "log_messages": {
         "your_choice": "Your Choice: ",
         "your_answer": "Your Answer: ",
         "continue": "Press [Enter] to continue.",
-        "successfully_deleted_deck": "Deck was successfuly removed.",
+        "successfully_deleted_deck": "Deck was successfully removed.",
         "return_to_the_deck_browser": "[bold magenta]To return to the Deck Browser, press enter.[/bold magenta]",
         "return_to_the_main_menu": "[bold magenta]To return to the main menu, press enter.[/bold magenta]",
         "invalid_command": "Invalid command. Please try again.",
