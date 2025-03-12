@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0] - 2025-03-12  
+### Added  
+- **New Game Modes**  
+  - **Guess the Definition**: Multiple-choice mode (A, B, C, D).
+  - **Survival Mode**: An endless quiz mode.
+- **New deck**: Added Czech-Norwegian flashcards deck.
+- **Correct Answer Display**: Now shows the correct answer when a wrong guess is made.
+
+### Changed  
+- Validation Improvement: Prevents entering an empty string for the deck ID. 
+
+
 ## [1.3.0] - 2025-03-07  
 ### Added  
 - **Dynamic Text System**  

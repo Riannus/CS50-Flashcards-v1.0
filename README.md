@@ -9,16 +9,19 @@
 ## Features  
 - **Custom Decks**: Create flashcard decks by defining terms and corresponding definitions.  
 - **Deck Browser**: View, edit, or delete existing flashcard decks.  
-- **Game Mode**: Play a "guessing game" with random flashcards from a selected deck. Players have 3 lives to correctly match all terms and definitions.
+- **Game Modes**: Play several games to memorize your custom flashcards.
+  - **Quiz Mode**: Match the term with its definition.
+  - **Guess the Definition**: Multiple-choice mode (A, B, C, D).
+  - **Survival Mode**: An endless quiz mode.
 - **Study Mode**: A relaxed mode where users can go through their flashcards without penalties. Cards can also be edited directly in this mode.
 - **CSV-Based Storage**: Flashcard decks are stored in easily accessible CSV files for management and sharing.  
-- **Default Deck**: Includes a preloaded math deck for immediate gameplay.
-- **Dynamic Text System**: All in-game texts are stored in a JSON file, making it easy to modify or expand without altering the source code.
+- **Default Decks**: Includes a preloaded decks for immediate gameplay.
 
 ## Design Decisions  
 - **CSV for Data Storage**: Chosen for its simplicity and ease of use, given the small scale of the project.  
 - **Command-Line Interface**: A terminal-based menu system ensures a straightforward user experience without requiring additional dependencies for graphical interfaces.  
-- **Error Handling**: User inputs are validated to ensure a smooth experience, including standardized inputs for terms and definitions to avoid case-sensitivity issues.  
+- **Error Handling**: User inputs are validated to ensure a smooth experience, including standardized inputs for terms and definitions to avoid case-sensitivity issues.
+- **Dynamic Text System**: All in-game texts are stored in a JSON file, making it easy to modify or expand without altering the source code.
 
 ## Future Features  
 Planned enhancements include:  
